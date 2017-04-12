@@ -1,7 +1,12 @@
+
+
 Select * from Donation
 Select GetDate() today -- you can select records from specific dates
 Select 5 + 30/3 *4 --will do math if we need that related to a field
 Select DonationAmount, DonationAmount * .3 As Overhead from Donation --DonationAmount, DonationAmount will show the origonal DonationAmount, and the amount taken out for Overhead.
+
+
+
 
 
 --DateTime
@@ -29,7 +34,6 @@ Cast(Day(DonationDate) as nvarchar(4)) +
 '/' + cast(year(donationDate) as nvarchar(4)) as [Date]
 from Donation
 Use Community_Assist
-
 
 
 
@@ -74,3 +78,10 @@ when 8 then 'August'
 when 9 then 'September'
 end as [Month]
 From donation
+
+Select name from sys.Databases					--these are System functions. Allows you to see system functions of the relational Database.
+Select * from sys.Databases 
+Select name from sys.Tables
+Select * from sys.Tables
+
+Select name from sys.all_columns where object_id=485576768 -- This allows you to look at data in all colums for specific items.
