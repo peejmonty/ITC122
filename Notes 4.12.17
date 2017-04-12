@@ -1,0 +1,6 @@
+Use Community_Assist
+
+Select * from Donation
+Select GetDate() today -- you can select records from specific dates
+Select 5 + 30/3 *4 --will do math if we need that related to a field
+Select DonationAmount, DonationAmount * .3 As Overhead from Donation --DonationAmount, DonationAmount will show the origonal DonationAmount, and the amount taken out for Overhead.
