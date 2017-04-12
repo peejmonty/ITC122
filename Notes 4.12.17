@@ -1,9 +1,36 @@
-Use Community_Assist
-
 Select * from Donation
 Select GetDate() today -- you can select records from specific dates
 Select 5 + 30/3 *4 --will do math if we need that related to a field
 Select DonationAmount, DonationAmount * .3 As Overhead from Donation --DonationAmount, DonationAmount will show the origonal DonationAmount, and the amount taken out for Overhead.
+
+
+--DateTime
+Select Year(DonationDate)as [Year] from Donation --Year as a function extracts the date from whatever table you are looking for
+
+Select * from Donation where Year(DonationDate)= 2016 -- Specifies what dates you are getting your donations from 
+Select Month(DonationDate [Month] from Donation -- returns the month the donations were made
+
+Select * from Donation
+where Month(DonationDate) between 2 and 4 -- allows you to specify a range of months
+And Year(DonationDate) = 2016
+
+Select Day(DonationDate) [Day] from Donation --can select specific day/date
+
+Select DatePart(hour,DonationDate) [Hour],
+DatePart(Minute, DonationDate),
+DatePart(Second, DonationDate) [Second]
+from Donation -- This has to come after you source from all the columns
+
+Select DateDiff(Day, getDate(), '6/16/2017') DaysLeft
+Select DateAdd(Second,1000000000,GetDate())
+
+Select Datename(Month, DonationDate) + '/' +
+Cast(Day(DonationDate) as nvarchar(4)) +
+'/' + cast(year(donationDate) as nvarchar(4)) as [Date]
+from Donation
+Use Community_Assist
+
+
 
 
 
