@@ -4,3 +4,46 @@ Select * from Donation
 Select GetDate() today -- you can select records from specific dates
 Select 5 + 30/3 *4 --will do math if we need that related to a field
 Select DonationAmount, DonationAmount * .3 As Overhead from Donation --DonationAmount, DonationAmount will show the origonal DonationAmount, and the amount taken out for Overhead.
+
+
+
+
+--aggregate functions
+Select Sum(DonationAmount) Total from Donation
+Select Avg(DonationAmount) Average from Donation
+Select Count(DonationAmount) NumberofDonations from Donation
+Select Max(DonationAmount) Highest from Donation
+Select Min(DonationAmount) Least from Donation
+
+Select Count(DonationAmount) NumberofDonations from Donation
+Where DonationAmount > 500 
+
+Select Count(DonationAmount) [Count],
+Avg(DonationAmount) Average,
+Sum(DonationAmount) Total
+From Donation
+
+Select * From GrantRequest
+
+Select GrantTypeKey, Count(GrantTypeKey)[Count],
+Avg(GrantRequestAmount) Average,
+Sum(GrantRequestAmount) Total
+From GrantRequest
+Group by GrantTypeKey
+
+Select Year (GrantRequestDate) [Year],
+GrantTypeKey, Count(GrantTypeKey)[Count],
+Avg(GrantRequestAmount) Average,
+Sum(GrantRequestAmount) Total
+From GrantRequest
+Where Year(GrantrequestDate)=2015
+Group by Year(GrantRequestDate),GrantTypeKey
+Having Avg(GrantRequestAmount)> 400
+
+Select DonationKey, DonationAmount,
+Case Month(DonationDate)
+When 2 then 'February'							--then Clause allows you to go through a set of values and gibe it a set of alliases.
+when 8 then 'August'
+when 9 then 'September'
+end as [Month]
+From donation
