@@ -1,0 +1,16 @@
+temporary tables they are a thing.
+
+Select Personkey, PersonLastName, PersonFirstName, PersonEmail
+From Person
+
+--functions-- scalar
+(int @number)
+returns int
+As
+Begin
+Decalre @cube int
+Set @cube = @number * @number * @number
+return @cube
+End
+Go
+Select EmployeeKey, dbo.
