@@ -1,0 +1,4 @@
+Use MetroAlt
+
+Select Year(EmployeeHireDate) from Employee
+ORDER BY Year(EmployeeHireDate), EmployeeLastName;
