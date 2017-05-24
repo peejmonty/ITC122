@@ -1,4 +1,16 @@
 Use MetroAlt
 
+1.
 Select Year(EmployeeHireDate) from Employee
 ORDER BY Year(EmployeeHireDate), EmployeeLastName;
+
+2. 
+Select MAX(EmployeeHireDate)
+From Employee;
+Select MIN(EmployeeHireDate)
+From Employee;
+
+Select DateDiff(Month,'2014-12-16','1995-01-06') MonNum
+
+3.
+Select Format(Cast(EmployeePhone as bigint), '(###)###-####') PhoneNum From Employee
