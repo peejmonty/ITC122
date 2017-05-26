@@ -23,7 +23,61 @@ Select * From Employee
 Where Year(EmployeeHireDate) BETWEEN 2013 AND 2015;
 
 6. 
+Select PositionName, PositionKey
+From Position
+
+Select EmployeeHourlyPayRate, PositionKey
+From EmployeePosition
+
+Select EmployeeHourlyPayRate, EmployeeHourlyPayRate * 40 As Weekly From EmployeePosition 
 
 
 7.
-Select MAX(EmployeeHourlyPayRate) From EmployeePosition
+Select Max(EmployeeHourlyPayRate) Highest from EmployeePosition 
+Select PositionName, PositionKey 
+FROM Position
+
+8. 
+Select MIN(EmployeeHourlyPayRate) Lowest from EmployeePosition
+
+9. 
+Select AVG(EmployeeHourlyPayRate) Lowest from EmployeePosition
+
+10.
+Select AVG(EmployeeHourlyPayRate) Average From EmployeePosition
+Group By PositionKey
+
+11.
+
+Select Count(EmployeeHireDate) Months 
+From Employee
+Group BY DatePart (MONTH, EmployeeHireDate)
+
+Select Count(EmployeeHireDate) Years 
+From Employee
+Group BY DatePart (YEAR, EmployeeHireDate)
+
+12.
+Select Count(EmployeeHireDate) Months,
+Case Month(EmployeeHireDate)
+When 1 then 'January'
+When 2 then 'February'
+when 3 then 'March'
+when 4 then 'April'
+when 5 then 'May'
+when 6 then 'June'
+when 7 then 'July'
+when 8 then 'August'
+when 9 then 'September'
+when 10 then 'October'
+when 11 then 'November'
+when 12 then 'December'
+end as [Month]
+From Employee
+Group BY DatePart (MONTH, EmployeeHireDate)
+
+Select Count(EmployeeHireDate) Years 
+From Employee
+Group BY DatePart (YEAR, EmployeeHireDate)
+
+13.
