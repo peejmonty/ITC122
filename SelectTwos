@@ -26,6 +26,7 @@ Where Year(EmployeeHireDate) BETWEEN 2013 AND 2015;
 Select PositionName, PositionKey
 From Position
 
+
 Select EmployeeHourlyPayRate, PositionKey
 From EmployeePosition
 
@@ -81,3 +82,8 @@ From Employee
 Group BY DatePart (YEAR, EmployeeHireDate)
 
 13.
+Select AVG(EmployeeHourlyPayRate) Average 
+From EmployeePosition 
+Group BY PositionKey
+Having AVG(EmployeeHourlyPayRate) > 50
+
