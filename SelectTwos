@@ -38,6 +38,7 @@ Select Max(EmployeeHourlyPayRate) Highest from EmployeePosition
 Select PositionName, PositionKey 
 FROM Position
 
+
 8. 
 Select MIN(EmployeeHourlyPayRate) Lowest from EmployeePosition
 
@@ -86,4 +87,16 @@ Select AVG(EmployeeHourlyPayRate) Average
 From EmployeePosition 
 Group BY PositionKey
 Having AVG(EmployeeHourlyPayRate) > 50
+
+14. 
+Select Sum(Riders) Total
+From Ridership 
+
+15.
+Use MetroAlt
+
+Select * from sys.Tables
+
+16.
+Select * from sys.Databases
 
