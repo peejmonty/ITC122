@@ -1,0 +1,9 @@
+Use MetroAlt
+
+Select EmployeeLastName, EmployeeFirstName
+From Employee
+inner join EmployeePosition
+on EmployeePosition.EmployeeKey=Employee.EmployeeKey
+inner join Position 
+on EmployeePosition.PositionKey=Position.PositionKey
+Select EmployeeKey, max(EmployeeHourlyPayRate) from EmployeePosition
