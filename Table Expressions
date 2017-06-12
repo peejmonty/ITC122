@@ -1,0 +1,6 @@
+1. Select * From(Select PositionName AS Pos, (Select Count(EmployeeKey) From EmployeePosition) AS Emp Count
+From Position Where position.PositionKey In(Select EmployeePosition.PositionKey From EmployeePosition)) AS Employee Count;
+
+2.
+Select * From (Select YEAR(EmployeeHireDate) AS HireYear, COUNT(EmployeeHireDate) as Employees FROM Employee
+GROUP BY Year(EmployeeHireDate)) AS HiredYear;
