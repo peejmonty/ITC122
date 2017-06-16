@@ -1,6 +1,279 @@
-1. Select * From(Select PositionName AS Pos, (Select Count(EmployeeKey) From EmployeePosition) AS Emp Count
+1. Select * From(Select PositionName AS Pos, (Select Count(EmployeeKey) From EmployeePosition) AS EmpCount
 From Position Where position.PositionKey In(Select EmployeePosition.PositionKey From EmployeePosition)) AS Employee Count;
+
+
+
 
 2.
 Select * From (Select YEAR(EmployeeHireDate) AS HireYear, COUNT(EmployeeHireDate) as Employees FROM Employee
 GROUP BY Year(EmployeeHireDate)) AS HiredYear;
+
+
+
+
+
+3 .
+
+
+With EmpCount AS
+ (
+  Select PositionName AS Pos,
+  (Select COUNT(EmployeeKey) From EmployeePosition) AS [EmpCount]
+  From Position where Position.PositionKey IN (Select EmployeePosition.PositionKey
+   From EmployeePosition)
+ )
+
+
+
+
+4.
+
+
+With HiredBy AS
+ (
+  SELECT YEAR(EmployeeHireDate) AS YearHired,
+  Count(EmployeeHireDate) AS YearCount From Employee
+  Group BY YEAR(EmployeeHireDate)
+ ) 
+
+Select * From HiredBy
+
+
+
+
+5.
+
+
+With BusBarnTotal AS
+ ( Select COUNT(BusBarnKey) AS BBCOunt
+  From Bus
+  Where BusBarnKey = @BusBarn
+ )
+ Select * BusBarnTotal; 
+
+
+
+
+6.
+
+
+
+
+
+
+use MetroAlt
+
+
+
+
+Create view HR_EmployeeView AS
+
+
+
+
+Select
+
+
+
+
+EmployeeLastName,
+EmployeeFirstName,
+EmployeeAdress,
+EmployeeCity,
+EmployeeZipCode,
+EmployeeHourlyPayRate,
+PositionName
+From Employee
+ Inner JOIN EmployeePosition
+ Where Employee.EmployeeKey= EmployeePosition.EmployeeKey
+ Inner Join Position
+ ON EmployeePosition.EmployeePositionKey = Position.PositionKey;
+
+
+
+
+7.
+
+
+Alter Table HR EMployeeView WITH SCHEMABINDING
+
+
+AS
+
+
+SELECT 
+
+EmployeeLastName, EmployeeFirstName, EmployeeAddress,
+
+
+EmployeeCity, EmployeeZipCode, EmployeePhone, 
+
+
+EmployeeEmail, EmployeeHireDate, EmployeeHourlyPayRate,
+
+
+PoistionName
+
+
+From Employee
+
+
+Inner JOIN EmployeePostion
+
+
+ON Employee.EmployeeKey = EmployeePostion.EmployeeKey
+
+
+Inner JOIN Position
+
+
+ON EmployeePosition.PositionKey = Position.PositionKey;
+
+
+GO
+
+
+
+
+
+8.
+
+
+
+
+
+Drop View Schedule_Assignment
+
+
+GO
+
+
+Create View Schedule_Assignment 
+
+
+AS
+
+
+Select
+
+
+      BusDriverShitsStartTime, BusDriverShiftStopTime
+
+
+      EmployeeFirstName, EmployeeLastName, BusRouteKey, BusKey
+
+
+From
+
+
+      BusScheduleAssignment
+
+
+      INNER JOIN Employee
+
+
+      ON EmployeeKey = Employee.EmployeeKey
+
+
+      BusDriverShiftKey = BusScheduleAssignment.BusDriverShiftKey;
+
+
+GO
+
+
+
+
+
+Select * FROM Schedule_assignemnt;
+
+
+
+
+
+9. 
+
+
+
+
+
+Create FUNCTION Employee_City
+
+
+(@city as NVARCHAR(255)) 
+
+
+
+
+
+AS
+
+
+Table
+
+
+
+
+
+Select
+
+
+
+
+
+EmployeeLastName, EmployeeFirstName, EmployeeCity
+
+
+From Employee
+
+
+Where EmployeeCity = @city;
+
+
+
+
+
+GO
+
+
+
+
+
+Select *
+
+
+From Employee_city('Seattle');
+
+
+
+
+
+10.
+
+
+
+
+
+Create View BusDriverLastShift 
+
+
+
+
+
+AS
+
+
+
+
+
+,
+
+
+
+
+
+Select, BusDriverShift, BusDriverShiftStartTime, BusDriverShiftEndTime,
+
+From BusDriverShift
+
+
+CROSS JOIN BusRouteAssignment 
